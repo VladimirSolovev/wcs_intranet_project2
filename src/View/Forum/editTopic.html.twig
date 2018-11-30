@@ -1,0 +1,8 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Editer un topic{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Editer : {{ topic.suject }}</h1>
+    {% include 'Forum/_editeTopicForm.html.twig' %}
+{% endblock %}

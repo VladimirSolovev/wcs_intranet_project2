@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Mot de passe oublié{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/staff.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-lg-4 mt-5">
+                <form method="post">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="emailRequest">
+                                    <i class="fas fa-at"></i>
+                                </label>
+                            </div>
+                            <input type="email" class="form-control" id="emailRequest" name="emailRequest"
+                                   placeholder="Ton e-mail">
+                        </div>
+                    </div>
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                    {% if success %}
+                        <div class="alert alert-success" role="alert">
+                            {{ success }}
+                        </div>
+                    {% endif %}
+                    <div class="row justify-content-center">
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

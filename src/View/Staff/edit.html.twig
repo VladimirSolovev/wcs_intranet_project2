@@ -1,0 +1,75 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Editer un utilisateur{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/staff.css">
+{% endblock %}
+
+{% block body %}
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Page Features -->
+        <div class="row text-center">
+            {% if user %}
+                <div class="col mt-2 mb-5">
+                    <h1>Editer : {{ user.firstname }} {{ user.lastname }}</h1>
+                </div>
+            {% else %}
+                <p class="badge badge-danger">Pas d'utilisateurs dans la BDD.</p>
+            {% endif %}
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="POST" class="text-center">
+
+                    <!-- hidden id for user's edition -->
+                    <input type="hidden" value="{{ user.id }}" name="id">
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="firstname"><i class="far fa-user-circle"></i></label>
+                        </div>
+                        <input type="text" value="{{ user.firstname }}" class="form-control"
+                               id="firstname" name="firstname">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="lastname"><i class="far fa-user-circle"></i></label>
+                        </div>
+                        <input type="text" class="form-control" value="{{ user.lastname }}" name="lastname"
+                               id="lastname" max="64" min="3">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="email"><i class="fas fa-at"></i></label>
+                        </div>
+                        <input type="email" class="form-control" value="{{ user.email }}" name="email"
+                               id="email" max="64" min="3">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="password"><i class="fas fa-at"></i></label>
+                        </div>
+                        <input type="password" class="form-control" value="" name="password"
+                               id="password" max="64" min="3" placeholder="Veuillez saisir votre mot de passe">
+                    </div>
+
+                    <label for="description">Description :</label>
+                    <textarea name="description" id="description" rows="4"style="background: #2f323b; color: #949ba2;width: 100%;margin-bottom: 10px;">{{ user.description }}</textarea>
+                    <br>
+                    {% if status is same as(0) %}
+                        <button type="submit" class="btn btn-info btn-xs">Ajouter un utilisateur</button>
+                    {% else %}
+                        <button type="submit" class="btn btn-warning btn-xs">Editer l'utilisateur</button>
+                        <a href="/user/delete/{{ user.id }}" class="btn btn-danger btn-xs">Supprimer l'utilisateur</a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

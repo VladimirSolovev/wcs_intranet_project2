@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Nouveau mot de passe{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/staff.css">
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <form method="post" action="">
+                    <div class="form-group">
+                        <label for="passwordReset">Nouveau mot de passe :</label>
+                        <input type="password" class="form-control" id="passwordReset" name="passwordReset"
+                               placeholder="Nouveau mot de passe">
+                    </div>
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                    {% if success %}
+                        <div class="alert alert-success" role="alert">
+                            {{ success }}
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

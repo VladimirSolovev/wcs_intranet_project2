@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Editer un article{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/staff.css">
+    <link rel="stylesheet" href="/assets/ckeditor/skins/moono-dark/editor.css">
+    <script src="/assets/ckeditor/ckeditor.js"></script>
+{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Editer : {{ article.title }}</h1>
+    <h4 class="articleCreation">Cher administrateur, cher Maître Wilder, laisse parler ta plume !</h4>
+
+    <form method="POST">
+        <div class="offset-3 col-6">
+            <input type="hidden" value="{{ article.id }}" name="id">
+            <label for="title">Un joli titre, c'est mieux !</label>
+            <div class="form-group">
+                <input class="col" type="text" value="{{ article.title }}" name="title" id="articleTitle" max="16" min="3" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <textarea class="col" type="text" name="content" id="articleContent" rows="20" required>{{ article.content }}</textarea>
+                <script>
+                    CKEDITOR.replace('content');
+                </script>
+            </div>
+            <br>
+            {% if status is not same as(0) %}
+                <button type="submit" class="btn btn-warning btn-xs offset-5 btn btn-info btn-xs">Editer</button>
+                <a href="/article/delete/{{ article.id }}" class="btn btn-danger btn-xs">Supprimer</a>
+            {% endif %}
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Trombinoscope{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/gallery.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center pt-3">Trombinoscope</h1>
+    </div>
+
+    <div class="container">
+        <div class="row mb-3 justify-content-center">
+            <form action="" method="post" id="form1">
+                <select name="language">
+                    <option value="0">Tous les Wilders</option>
+                    <option value="1" {% if language == 1 %}selected {% endif %}>PHP</option>
+                    <option value="2" {% if language == 2 %}selected {% endif %}>JavaScript</option>
+                    <option value="3" {% if language == 3 %}selected {% endif %}>Encadrement</option>
+                    <option value="4" {% if language == 4 %}selected {% endif %}>En réflexion</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Rechercher !</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for user in gallery %}
+                <div class='card card-profile text-center'>
+                    <img alt='' class='card-img-top' src='https://image.noelshack.com/fichiers/2018/42/3/1539813227-banwcs1.jpg'>
+                    <div class='card-block'>
+                        {% if user.avatar is null %}
+                            <img alt='user avatar' class='card-img-profile size_img' src='/assets/images/avatar/default.png'>
+                        {% else %}
+                            <img alt='user avatar' class='card-img-profile size_img' src='/assets/images/avatar/{{ user.avatar }}'>
+                        {% endif %}
+                        <h4 class='card-title'>{{ user.firstname }} {{ user.lastname }}</h4>
+                        <a href="/profilelink/{{ user.id }}" class="btn" style="color: black; background-color: #f9a02e; margin-bottom: 15px;">Visite son profil !</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block JavaScript %}
+{% endblock %}

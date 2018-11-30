@@ -1,0 +1,82 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/profile.css">
+{% endblock %}
+{% block body %}
+    <h1 class="mb-3">Le profil de {{ user.firstname|capitalize }}</h1>
+    <div class="container profile-container shadow bg-white rounded mb-5">
+        <div id="profile" class="row">
+            <div class="col-4 profile-photo-section">
+                {% if user.avatar is null %}
+                    <img class="profile-php-img" src='/assets/images/avatar/default.png' alt="Image de profil">
+                {% else %}
+                    <img class="profile-php-img" src='/assets/images/avatar/{{ user.avatar }}' alt="Image de profil">
+                {% endif %}
+                <div class="profile-info-vignette">
+                    <p class="profle-vignete-one">{{ user.firstname|capitalize }} {{ user.lastname|upper }}</p>
+                    {% if user.id_promotion == 1 %}
+                        <p class="profle-vignete-three">Promotion Septembre 2018</p>
+                    {% elseif user.id_promotion == 2 %}
+                        <p class="profle-vignete-three">Promotion Janvier 2019</p>
+                    {% elseif user.id_promotion == 3 %}
+                        <p class="profle-vignete-three">Actuellement en poste à la Wild</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-8 profile-info-section">
+                <div class="profile-header-one">
+                    <div class="quote"><i class="fa fa-quote-left" aria-hidden="true"></i>
+                    </div>
+                    <p><span class="profile-span1">Hello, I'm {{ user.firstname|capitalize }} {{ user.lastname|upper }} / </span>
+                        {% if user.id_language == 1 %}
+                            <span class="profile-span2">Développeur PHP</span>
+                        {% elseif user.id_language == 2 %}
+                            <span class="profile-span2">Développeur JavaScript</span>
+                        {% elseif user.id_language == 4 %}
+                            <span class="profile-span2">En réflexion sur le choix du langage</span>    
+                        {% else %}
+                        <span class="profile-span2">Membre de l'encadrement</span>
+                        {% endif %}
+                        <br /> {{  user.description }}</p>
+                </div>
+                <div class="profile-header-two">
+                    <div class="row">
+                        <div class="col-4" id="socialInfo">
+                            <i class="fa fa-envelope" aria-hidden="true"></i><p>{{ user.email }}</p>
+                            {% if user.github is defined %}
+                                <i class="fa fa-envelope" aria-hidden="true"></i><p>{{ user.github }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-4" style="padding-left: 125px;
+}">
+                            <ul>
+                                {% if user.gitlab is defined %}
+                                    <li>{{ user.gitlab }}</li>
+                                {% endif %}
+                                {% if user.github is defined %}
+                                    <li>{{ user.github }}</li>
+                                {% endif %}
+                                {% if user.mobile is defined %}
+                                    <li>{{ user.mobile }}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col profile-btn-section">
+                    <div>
+                    </div>
+                </div>
+                <div class="col profile-btn-section">
+                    <div>
+                        {%  if session.user.id == user.id %}
+                            <a href="/user/edit/{{ session.user.id }}"><button type="button" class="btn">Editer le profil</button></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

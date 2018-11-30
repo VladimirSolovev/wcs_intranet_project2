@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div class="row" id="sidebar">
+        <div class="left ">
+            <ul>
+                <img id="logo" class="img-responsive img-rounded" src="/assets/images/logowild.png"
+                     alt="User picture"><!-- <span id="intrawildTitle">IntraWild</span>-->
+                <li class="item-menu">
+                    <span id="hello">Bonjour {{ session.user.firstname }} ! :)</span>
+                </li>
+                <a href="/profile">
+                    <li class="item-menu">
+                        <i class="fas fa-columns"></i>
+                        <span>Tableau de bord</span>
+                    </li>
+                </a>
+                {% if session.user.role == 1 %}
+                <a href="/staff">
+                    <li class="item-menu">
+                        <i class="fas fa-cog"></i>
+                        <span>Administration</span>
+                    </li>
+                </a>
+                {% endif %}
+                <a href="/forum">
+                    <li class="item-menu">
+                        <i class="far fa-comment"></i>
+                        <span>Forum</span>
+                    </li>
+                </a>
+                <a href="/actuality">
+                    <li class="item-menu">
+                        <i class="far fa-newspaper"></i>
+                        <span>Actualités</span>
+                    </li>
+                </a>
+                <a href="/gallery">
+                    <li class="item-menu">
+                        <i class="fas fa-camera"></i>
+                        <span>Trombinoscope</span>
+                    </li>
+                </a>
+                <a href="/disconnect">
+                    <li class="item-menu">
+                        <i id="icon" class="fa fa-power-off" style="color: #FB5858;"></i>
+                        <span>Déconnexion</span>
+                    </li>
+                </a>
+                <div id="wcslinks" class="item-menu">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span class="wcswebsites">Les sites de la WCS</span>
+                </div>
+                <a href="https://wildcodeschool.fr/">
+                    <li class="wcswebsites site">
+                        WildCodeSchool
+                    </li>
+                </a>
+                <a href="https://odyssey.wildcodeschool.fr/">
+                    <li class="wcswebsites site">
+                        Odyssey
+                    </li>
+                </a>
+            </ul>
+        </div> <!-- end left -->
+        <div class="right">
+            content
+        </div>
+    </div>
+</div>

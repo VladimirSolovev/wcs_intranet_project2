@@ -1,0 +1,23 @@
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/ckeditor/skins/moono-dark/editor.css">
+    <script src="/assets/ckeditor/ckeditor.js"></script>
+{% endblock %}
+
+<form method="POST">
+    <div class="offset-3 col-6">
+        <input type="hidden" value="{{ topic.id }}" name="id">
+        <div class="form-group">
+            <input class="col" type="text" value="{{ topic.subject }}" name="subject" id="topicSubject" max="16" min="3" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <textarea class="col" type="text" name="content" id="topicContent" rows="20" required>{{ topic.content }}</textarea>
+            <script>
+                CKEDITOR.replace( 'content' );
+            </script>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <button id="topicSubmit" type="submit" class="btn btn-primary btn-xs">Valider</button>
+        </div>
+    </div>
+</form>

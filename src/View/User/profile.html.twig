@@ -1,0 +1,65 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/profile.css">
+{% endblock %}
+
+{% block body %}
+    <h1 class="mb-3">Mon profil</h1>
+    <div class="container profile-container shadow bg-white rounded mb-5">
+        <div id="profile" class="row">
+            <div class="col-4 profile-photo-section">
+                {% if session.user.avatar is null %}
+                    <img class="profile-php-img" src='/assets/images/avatar/default.png' alt="Image de profil">
+                {% else %}
+                    <img class="profile-php-img" src='/assets/images/avatar/{{ session.user.avatar }}' alt="Image de profil">
+                {% endif %}
+                <div class="profile-info-vignette">
+                    <h1>Bienvenue</h1>
+                    <p class="profle-vignete-one">{{ session.user.firstname|capitalize }} {{ session.user.lastname|upper }}</p>
+                </div>
+            </div>
+            <div class="col-8 profile-info-section">
+                <div class="profile-header-one">
+                    <div class="quote">
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                    </div>
+                    <p>
+                        <span class="profile-span1">Hello, I'm {{ session.user.firstname|capitalize }} {{ session.user.lastname|upper }} / </span><span class="profile-span2">Développeur PHP</span>
+                        <br> {{ session.user.description }}
+                    </p>
+                </div>
+                <div class="profile-header-two">
+                    <div class="row">
+                        <div class="col-4" id="socialInfo">
+                            <i class="fa fa-envelope" aria-hidden="true"></i><p>{{ session.user.email }}</p>
+                            {% if session.user.github is defined %}
+                                <i class="fab fa-github"></i><p>{{ session.user.github }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-4" style="padding-left: 125px;">
+                            <ul>
+                                {% if session.user.gitlab is defined %}
+                                    <li>{{ session.user.gitlab }}</li>
+                                {% endif %}
+                                {% if session.user.github is defined %}
+                                    <li>{{ session.user.github }}</li>
+                                {% endif %}
+                                {% if session.user.mobile is defined %}
+                                    <li>{{ session.user.mobile }}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col profile-btn-section">
+                    {%  if session.user.id is defined %}
+                        <a href="/user/edit/{{ session.user.id }}"><button type="button" class="btn">Editer le profil</button></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

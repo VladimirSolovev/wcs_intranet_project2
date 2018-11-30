@@ -1,0 +1,65 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Forum{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/ckeditor/skins/moono-dark/editor.css">
+    <script src="/assets/ckeditor/ckeditor.js"></script>
+{% endblock %}
+
+{% block body %}
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <h1 class="text-center">{{ topic.subject }}</h1>
+                <div class="col-12">
+                    <div class="card text-center mb-5">
+                        <div class="card-header">
+                            {% if session.user.role == 1 %}
+                                <ul class="nav nav-pills card-header-pills pt-0 pb-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="/forum/topic/edit/{{ topic.id }}">Editer</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled" href="/forum/topic/delete/{{ topic.id }}">Supprimer</a>
+                                    </li>
+                                </ul>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            {% for reply in replys %}
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <blockquote class="blockquote mb-0">
+                                            <p class="font-weight-bold">{{ reply.content |raw }}</p>
+                                            <footer class="blockquote-footer text-left">Auteur : <cite>{{ reply.firstname }} {{ reply.lastname }}</cite></footer>
+                                            <p class="text-right"><small>Date de création - {{ reply.replydate }}</small></p>
+                                        </blockquote>
+                                    </li>
+                                </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <form action="/forum/topic/reply/add" method="POST">
+                        <div class="form-group">
+                            <input type="hidden" name="topic_id" id="topic_id" value="{{ topic.id }}">
+                            <input type="hidden" name="user_id" id="user_id" value="{{ session.user.id }}">
+                            <textarea class="col" type="text" name="content" id="content" rows="20" required>{{ reply.content }}</textarea>
+                            <script>
+                                CKEDITOR.replace( 'content' );
+                            </script>
+                            <div class="row justify-content-center mt-4">
+                                <button id="replySubmit" type="submit" class="btn btn-primary btn-xs">Envoyer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

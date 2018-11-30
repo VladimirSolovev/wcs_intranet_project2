@@ -1,0 +1,31 @@
+{%  extends 'layout.html.twig' %}
+
+{% block title %}Actualités{% endblock %}
+
+{% block body %}
+    <h1>Actualités</h1>
+    <p class="pActuality">Ici, tu retrouveras toute l'actualité de la Wild Code School de Lille !<br>
+        (pssssst : des offres d'emploi peuvent se glisser parmi l'actualité, à toi de rester connecté pour ne
+        pas les zapper ;) )
+    </p>
+
+    <div class="container">
+        <div class="row">
+            {% for article in articles %}
+                <div class="col-md-4">
+                    <div class="card-box">
+                        <div class="card-title">
+                            <h2>{{ article.title }}</h2>
+                            <p>{{ article.content | slice(0,100) | raw }}...</p>
+                        </div>
+                        <div class="card-link">
+                            <a href="/actuality/{{ article.id }}" class="c-link">Lire l'article
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

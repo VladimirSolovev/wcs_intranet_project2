@@ -1,0 +1,36 @@
+/* Gallery CSS */
+
+.card-profile {
+    width: 340px;
+    margin: 10px auto;
+    background-color: #e6e5e1;
+    border-radius: 0 0 50px 50px;
+    border: 0;
+    box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.2);
+}
+.card-profile .card-img-top {
+    border-radius: 0;
+}
+.card-profile .card-img-profile {
+    max-width: 100%;
+    border-radius: 50%;
+    margin-top: -95px;
+    margin-bottom: 5px;
+    border: 5px solid #e6e5e1;
+}
+.card-profile .card-title {
+    margin-bottom: 5px;
+}
+.card-profile .card-title small {
+    display: block;
+    font-size: 0.6em;
+    margin-top: 0.2em;
+}
+.size_img {
+    width:280px;>
+}
+.more-info-btn {
+    background-color: #f9a02e;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}

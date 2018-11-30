@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <!-- maximum-scale=1.0 is now deprecated -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+    <title>IntraWild - {% block title %}{% endblock %}</title>
+
+    <!-- Latest Bootstrap's minified CSS -->
+    <link rel="stylesheet" href="/assets/bootstrap-4.1.3/css/bootstrap.min.css">
+
+    <!-- Latest Font Awesome's minified CSS -->
+    <link rel="stylesheet" href="/assets/fontawesome-free-5.4.1-web/css/all.css">
+
+    <!-- Main CSS style page -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    {% block stylesheet %}{% endblock %}
+    <link rel="icon" href="/assets/images/favicon.png">
+</head>
+
+<body>
+<header>
+    {% block header %}
+        <div id="header">
+            {% include '_header.html.twig' %}
+        </div>
+    {% endblock %}
+</header>
+<div class="main" id="body">
+    {% block body %}
+    {% endblock %}
+</div>
+
+<footer>
+    <div class="container-fluid" id="footer">
+        <div class="row justify-content-center">
+            <div class="col">
+            {% block footer %}
+                <p class="m-0 text-center">Made with ❤ by Wild Code School</p>
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Latest Bootstrap's minified JS and Jquery -->
+<script src="/assets/bootstrap-4.1.3/js/bootstrap.min.js"></script>
+<script src="/assets/jQuery/jquery-3.3.1.min.js"></script>
+<script src="/assets/js/sidebar.js"></script>
+{% block JavaScript %}
+{% endblock %}
+</body>
+</html>

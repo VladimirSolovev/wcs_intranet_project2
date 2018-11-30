@@ -1,0 +1,35 @@
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/ckeditor/skins/moono-dark/editor.css">
+    <script src="/assets/ckeditor/ckeditor.js"></script>
+{% endblock %}
+
+{% block body %}
+<h4 class="articleCreation">Cher administrateur, cher Maître Wilder, laisse parler ta plume !</h4>
+
+<form method="POST">
+    <div class="offset-3 col-6">
+        <input type="hidden" value="{{ article.id }}" name="id">
+        <input type="hidden" value="{{ session.user.id }}" name="id_author">
+        <label for="title">Un joli titre, c'est mieux !</label>
+        <div class="form-group">
+            <input class="col" type="text" value="{{ article.title }}" name="title" id="articleTitle"
+                   max="16" min="3" required>
+        </div>
+        <br>
+        <div class="form-group">
+            <textarea class="col" type="text" value="{{ article.content }}" name="content" id="articleContent"
+                      rows="20" required>
+            </textarea>
+            <script>
+                CKEDITOR.replace( 'content' );
+            </script>
+        </div>
+        <br>
+        <button id="articleSubmit" type="submit" class="offset-5 btn btn-primary btn-xs">Valider l'article</button>
+        {% if status is not same as(0) %}
+            <button type="submit" class="btn btn-warning btn-xs">Editer</button>
+            <a href="/article/delete/{{ article.id }}" class="btn btn-danger btn-xs">Supprimer</a>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}

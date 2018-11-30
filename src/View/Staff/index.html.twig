@@ -1,0 +1,85 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/staff.css">
+{% endblock %}
+
+{% block body %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Jumbotron Div -->
+        <div class="jumbotron my-4">
+            <h1 class="display-3">Table des utilisateurs</h1>
+            <a href="/user/add" class="btn btn-primary btn-xs">Ajouter un utilisateur</a>
+        </div>
+        <div class="jumbotron my-4">
+            <h1 class="display-3">Table des articles</h1>
+            <a href="/article/add" class="btn btn-primary btn-xs">Ajouter un article</a>
+        </div>
+
+        <!-- Page Features -->
+        <div class="row text-center">
+            {% if users is empty %}
+                <p class="badge badge-secondary">No user in DB</p>
+            {% else %}
+                <table class="table table-hover table-sm table-striped table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col">#Id</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Vérification d'email</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <th scope="row">{{ user.id }}</th>
+                            <td>{{ user.firstname }}</td>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.email }}</td>
+                            {% if user.isConfirmed == true %}
+                                <td><img src="/assets/images/checked.png"></td>
+                            {% else %}
+                                <td><a href="#" class="btn btn-danger btn-xs">Relancer</a></td>
+                            {% endif %}
+                            <td><a href="/user/edit/{{ user.id }}" class="btn btn-warning btn-xs">Editer</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+        <div class="row text-center">
+            <table class="table table-hover table-sm table-striped table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">#Id</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <th scope="row">{{ article.id }}</th>
+                        <td>{{ article.title }}</td>
+                        <td>{{ article.date_actuality }}</td>
+                        <td>{% if article.id_author == 14 %}Fleur Castel{% endif %}</td>
+                        <td><a href="/article/edit/{{ article.id }}" class="btn btn-warning btn-xs">Editer</a></td>
+                    </tr>
+                {% else %}
+                    <p class="badge badge-secondary">Pas d'articles dans la BDD.</p>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Ajouter un Wilder{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/staff.css">
+{% endblock %}
+
+{% block body %}
+    <h1 class="mb-5">Ajouter un nouveau Wilder</h1>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" enctype="multipart/form-data">
+
+                    <!-- Select -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="sexe"><i class="far fa-user-circle"></i></label>
+                        </div>
+                        <select class="custom-select" id="sexe" name="sexe" required>
+                            <option value="">Votre civilité</option>
+                            <option value="0">M.</option>
+                            <option value="1">Mme.</option>
+                        </select>
+                    </div>
+                    <!-- End of Select -->
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="firstname"><i class="far fa-user-circle"></i></label>
+                        </div>
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prénom">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="lastname"><i class="far fa-user-circle"></i></label>
+                        </div>
+                        <input type="text" class="form-control" id="lastname" name="lastname"
+                               placeholder="Nom de famille">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="email"><i class="fas fa-at"></i></label>
+                        </div>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="role"><i class="fab fa-black-tie"></i></label>
+                        </div>
+                        <select class="custom-select" id="role" name="role" required>
+                            <option value="">Rôle de l'utilisateur</option>
+                            <option value="0">Etudiant</option>
+                            <option value="1">Staff</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="avatar" class="col-sm-2 col-form-label form-label-custome">Avatar :</label>
+                        <div class="col-sm-10">
+                            <input type="file" class="form-control" id="avatar" name="avatar">
+                        </div>
+                    </div>
+
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                    {% if success %}
+                        <div class="alert alert-success" role="alert">
+                            {{ success }}
+                        </div>
+                    {% endif %}
+
+                    <!-- Submit button -->
+                    <div class="row justify-content-center">
+                        <div class="align-self-center form-btn-margin">
+                            <button type="submit" class="btn btn-primary mb-3" name="submit" id="submit">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
